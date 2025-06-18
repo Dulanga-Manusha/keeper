@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "keeper_backend": {
+      "main": "src/keeper_backend/main.mo",
+      "type": "motoko"
+    },
+    "keeper_frontend": {
+      "dependencies": [
+        "keeper_backend"
+      ],
+      "source": [
+        "src/keeper_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "keeper_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
