@@ -1,41 +1,131 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
 body {
-  font-family: sans-serif;
-  font-size: 1.5rem;
+  background-color: #f5f5f5;
+  padding: 0 16px;
 }
 
-img {
-  max-width: 50vw;
-  max-height: 25vw;
-  display: block;
-  margin: auto;
+header {
+  background-color: #f5ba13;
+  margin: auto -16px;
+  padding: 16px 32px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
-form {
+header h1 {
+  color: #fff;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.notes-container {
   display: flex;
-  justify-content: center;
-  gap: 0.5em;
-  flex-flow: row wrap;
-  max-width: 40vw;
-  margin: auto;
-  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 1rem -0.5rem;
 }
 
-button[type="submit"] {
-  padding: 5px 20px;
-  margin: 10px auto;
+.note {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 240px;
+  margin: 16px;
+  float: left;
+  transition: all 0.3s ease;
+}
+
+.note:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.note h1 {
+  font-size: 1.1em;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.note p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #555;
+}
+
+.delete-button {
+  position: relative;
   float: right;
+  margin-right: 10px;
+  background-color: transparent;
+  border: none;
+  color: #f5ba13;
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
 }
 
-#greeting {
-  margin: 10px auto;
-  padding: 10px 60px;
-  border: 1px solid #222;
+.delete-button:hover {
+  color: #e74c3c;
 }
 
-#greeting:empty {
-  display: none;
+form.create-note {
+  position: relative;
+  width: 480px;
+  margin: 30px auto 20px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
 
-.browser-warning {
-  display: none;
+form.create-note input,
+form.create-note textarea {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  resize: none;
+}
+
+form.create-note input {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+form.create-note button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: #f5ba13;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form.create-note button:hover {
+  background-color: #f0a500;
+  transform: scale(1.1);
 }

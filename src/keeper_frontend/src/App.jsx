@@ -1,30 +1,48 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { keeper_backend } from 'declarations/keeper_backend';
+import Note from './components/Note';
+import CreateArea from './components/CreateArea';
 
 function App() {
-  const [greeting, setGreeting] = useState('');
+  const [notes, setNotes] = useState([]);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    keeper_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+
+  async function fetchNotes() {
+    const notesArray = await keeper_backend.readNotes();
+    setNotes(notesArray);
+  }
+
+  async function addNote(newNote) {
+    await keeper_backend.createNote(newNote.title, newNote.content);
+    fetchNotes();
+  }
+
+  async function deleteNote(id) {
+    await keeper_backend.removeNote(id);
+    fetchNotes();
   }
 
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <div>
+      <header>
+        <h1>Keeper</h1>
+      </header>
+      <CreateArea onAdd={addNote} />
+      <div className="notes-container">
+        {notes.map((note, index) => (
+          <Note
+            key={index}
+            id={index}
+            title={note.title}
+            content={note.content}
+            onDelete={deleteNote}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
